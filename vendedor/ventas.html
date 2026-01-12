@@ -37,43 +37,32 @@ body { background:#f5f6fa; }
     <h2>Registrar Venta</h2>
     <p class="text-muted">Sistema poteciado por ORM Eloquent</p>
 
-    <?php if (!empty($mensaje)): ?>
-        <div class="alert <?= $tipoMensaje ?> shadow-sm">
-            <?= $mensaje ?>
-        </div>
-    <?php endif; ?>
-
     <form method="POST" class="card p-4 shadow" style="max-width:500px;">
         
         <label class="fw-bold">Cliente:</label>
-        <select name="cliente" class="form-select mb-3" required>
-            <option value="">Seleccionar...</option>
-            <?php foreach ($clientes as $c): ?>
-                <option value="<?= $c->idPersona ?>">
-                    <?= $c->nombre ?> <?= $c->apellidoP ?> (ID: <?= $c->idPersona ?>)
-                </option>
-            <?php endforeach; ?>
-        </select>
+        <select name="cliente" class="form-select mb-3">
+    <option>Juan Pérez</option>
+    <option>Maria Gomez</option>
+    </select>
     
         <label class="fw-bold">Producto:</label>
-        <select name="producto" class="form-select mb-3" required>
-            <option value="">Seleccionar...</option>
-            <?php foreach ($productos as $p): ?>
-                <option value="<?= $p->idProducto ?>">
-                    <?= $p->nombre ?> — $<?= $p->precio ?> (Stock: <?= $p->stock ?>)
-                </option>
-            <?php endforeach; ?>
-        </select>
+       <select name="producto" class="form-select mb-3">
+    <option>Camisa Polo</option>
+    <option>Tenis de Correr</option>
+    <option>Balón de Fútbol</option>
+   <option>Mochila Escolar</option>
+</select>
 
         <label class="fw-bold">Cantidad:</label>
         <input type="number" name="cantidad" class="form-control mb-3" min="1" required>
 
         <label class="fw-bold">Método de Pago:</label>
-        <select name="metodo" class="form-select mb-3" required>
-            <?php foreach ($metodos as $m): ?>
-                <option value="<?= $m->idMetodoPago ?>"><?= $m->descripcion ?></option>
-            <?php endforeach; ?>
-        </select>
+       <select name="metodo de pago" class="form-select mb-3">
+    <option>Efectivo</option>
+    <option>Tarjeta de Débito</option>
+    <option>Tarjeta de Crédito</option>
+   <option>Puntos de Lealtad</option>
+</select>
 
         <button class="btn btn-success w-100 mt-2">✅ Registrar Venta</button>
     </form>
