@@ -56,9 +56,8 @@ h2 { font-weight: 700; color: #343a40; }
                         <?= $p->proveedor ? $p->proveedor->nombre : 'Sin Prov.' ?>
                     </td>
                     <td>
-                        <a href="producto_editar.php?id=<?= $p->idProducto ?>" class="btn btn-warning btn-sm">✏ Editar</a>
-                        <a href="producto_eliminar.php?id=<?= $p->idProducto ?>" class="btn btn-danger btn-sm"
-                           onclick="return confirm('¿Estás seguro de eliminar este producto?')">🗑 Eliminar</a>
+                        <a href="producto_editar.html?id=<?= $p->idProducto ?>" class="btn btn-warning btn-sm">✏ Editar</a>
+                        <a href="productos.html" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este producto? (Esto es solo una demo)')">🗑 Eliminar</a>
                     </td>
                 </tr>
             <tr>
