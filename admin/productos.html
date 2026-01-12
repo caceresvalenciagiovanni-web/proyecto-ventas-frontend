@@ -26,6 +26,9 @@ h2 { font-weight: 700; color: #343a40; }
     <h4 style="color:white; text-align:center;">Admin Panel</h4>
     <a href="dashboard.html" style="color:white; padding:15px; display:block; text-decoration:none;">🏠 Dashboard</a>
     <a href="productos.html" style="color:white; padding:15px; display:block; text-decoration:none; background:#007bff;">📦 Gestión Productos</a>
+    
+    <a href="ventas.html" style="color:white; padding:15px; display:block; text-decoration:none;">💰 Registrar Venta</a>
+    <a href="salarios.html" style="color:white; padding:15px; display:block; text-decoration:none;">💸 Ver Salarios</a>
     <a href="../index.html" style="color:white; padding:15px; display:block; text-decoration:none; background:#dc3545; margin-top:20px;">🚪 Cerrar Sesión</a>
 </div>
 
@@ -40,35 +43,30 @@ h2 { font-weight: 700; color: #343a40; }
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($productos as $p): ?>
-                <tr>
-                    <td><?= $p->idProducto ?></td>
-                    <td><?= $p->nombre ?></td>
-                    <td>$<?= number_format($p->precio, 2) ?></td>
-                    <td>
-                        <?php if($p->stock < 5): ?>
-                            <span style="color:red; font-weight:bold;"><?= $p->stock ?> (Bajo)</span>
-                        <?php else: ?>
-                            <?= $p->stock ?>
-                        <?php endif; ?>
-                    </td>
-                    <td>
-                        <?= $p->proveedor ? $p->proveedor->nombre : 'Sin Prov.' ?>
-                    </td>
-                    <td>
-                        <a href="producto_editar.html?id=<?= $p->idProducto ?>" class="btn btn-warning btn-sm">✏ Editar</a>
-                        <a href="productos.html" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este producto? (Esto es solo una demo)')">🗑 Eliminar</a>
-                    </td>
-                </tr>
-            <tr>
-    <td>1</td>
-    <td>Camisa Polo</td>
-    <td>$15.00</td>
-    <td>50</td>
-    <td>Nike</td>
-    <td><button class="btn btn-warning btn-sm">Editar</button></td>
-</tr>
-        </tbody>
+    <tr>
+        <td>1</td>
+        <td>Camisa Polo</td>
+        <td>$15.00</td>
+        <td>50</td>
+        <td>Nike</td>
+        <td>
+             <a href="#" class="btn btn-warning btn-sm">✏ Editar</a>
+             <a href="#" class="btn btn-danger btn-sm">🗑 Eliminar</a>
+        </td>
+    </tr>
+    
+    <tr>
+        <td>2</td>
+        <td>Zapatillas Run</td>
+        <td>$45.00</td>
+        <td><span style="color:red; font-weight:bold;">3 (Bajo)</span></td>
+        <td>Adidas</td>
+        <td>
+             <a href="#" class="btn btn-warning btn-sm">✏ Editar</a>
+             <a href="#" class="btn btn-danger btn-sm">🗑 Eliminar</a>
+        </td>
+    </tr>
+</tbody>
     </table>
 </div>
 </body>
