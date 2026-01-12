@@ -1,72 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Registrar Venta (Versión MVC)</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../style.css" rel="stylesheet">
-
-<style>
-/* Estilos específicos para el sidebar (los mantenemos igual) */
-body { background:#f5f6fa; }
-.sidebar {
-    width: 240px; height: 100vh;
-    position: fixed; left: 0; top: 0;
-    background: #212529; padding-top: 20px;
-}
-.sidebar a {
-    color: white; padding: 15px; display: block;
-    text-decoration: none;
-}
-.sidebar a:hover { background: #198754; }
-.content { margin-left: 260px; padding: 25px; }
-</style>
+    <meta charset="UTF-8">
+    <title>Registrar Venta - Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    
+    <style>
+        body { background:#f5f6fa; }
+        
+        /* Estilos del Sidebar Admin */
+        .sidebar {
+            width: 240px; height: 100vh;
+            position: fixed; left: 0; top: 0;
+            background: #343a40; /* Fondo Oscuro Admin */
+            padding-top: 20px;
+        }
+        .sidebar a {
+            color: white; padding: 15px; display: block;
+            text-decoration: none;
+        }
+        /* Color AZUL al pasar el mouse (Estilo Admin) */
+        .sidebar a:hover { background: #007bff; }
+        
+        .content { margin-left: 260px; padding: 25px; }
+    </style>
 </head>
 
 <body>
 
 <div class="sidebar">
-    <h4 class="text-white text-center">Vendedor</h4>
+    <h4 class="text-white text-center">Admin Panel</h4>
+    
     <a href="dashboard.html">🏠 Dashboard</a>
-    <a href="ventas.html">💰 Registrar Venta</a>
-    <a href="salario.html">📊 Mi Salario</a>
-    <a href="../index.html" style="background:#dc3545;">🚪 Cerrar Sesión</a>
+    <a href="productos.html">📦 Gestión Productos</a>
+    
+    <a href="ventas.html" style="background: #007bff;">💰 Registrar Venta</a>
+    
+    <a href="salarios.html">📊 Ver Salarios</a>
+    <a href="../login_admin.html" style="background:#dc3545;">🚪 Cerrar Sesión</a>
 </div>
 
 <div class="content">
-    <h2>Registrar Venta</h2>
-    <p class="text-muted">Sistema poteciado por ORM Eloquent</p>
+    <h2>Registrar Venta (Modo Admin)</h2>
+    <p class="text-muted">Generar venta manual desde el panel administrativo.</p>
 
-    <form method="POST" class="card p-4 shadow" style="max-width:500px;">
+    <div id="alerta-exito" class="alert alert-success" style="display:none; max-width:500px;">
+        ✅ <strong>¡Operación Exitosa!</strong> Venta registrada correctamente en el sistema.
+    </div>
+
+    <form action="ventas.html" method="GET" class="card p-4 shadow" style="max-width:500px;">
         
         <label class="fw-bold">Cliente:</label>
         <select name="cliente" class="form-select mb-3">
-    <option>Juan Pérez</option>
-    <option>Maria Gomez</option>
-    </select>
+            <option>Cliente Genérico</option>
+            <option>Juan Pérez</option>
+            <option>Maria Gomez</option>
+        </select>
     
         <label class="fw-bold">Producto:</label>
-       <select name="producto" class="form-select mb-3">
-    <option>Camisa Polo</option>
-    <option>Tenis de Correr</option>
-    <option>Balón de Fútbol</option>
-   <option>Mochila Escolar</option>
-</select>
+        <select name="producto" class="form-select mb-3">
+            <option>Camisa Polo - $150</option>
+            <option>Tenis Deportivos - $500</option>
+            <option>Pantalón Jeans - $300</option>
+        </select>
 
         <label class="fw-bold">Cantidad:</label>
-        <input type="number" name="cantidad" class="form-control mb-3" min="1" required>
+        <input type="number" name="cantidad" class="form-control mb-3" min="1" value="1" required>
 
         <label class="fw-bold">Método de Pago:</label>
-       <select name="metodo de pago" class="form-select mb-3">
-    <option>Efectivo</option>
-    <option>Tarjeta de Débito</option>
-    <option>Tarjeta de Crédito</option>
-   <option>Puntos de Lealtad</option>
-</select>
+        <select name="metodo" class="form-select mb-3">
+            <option>Efectivo</option>
+            <option>Tarjeta de Crédito</option>
+            <option>Transferencia</option>
+        </select>
 
-        <button class="btn btn-success w-100 mt-2">✅ Registrar Venta</button>
+        <button type="submit" class="btn btn-primary w-100">Registrar Venta</button>
     </form>
 </div>
+
+<script>
+    // Detectamos si la página se recargó tras enviar el formulario
+    const parametros = new URLSearchParams(window.location.search);
+    
+    if (parametros.has('cliente')) {
+        const alerta = document.getElementById('alerta-exito');
+        
+        // Mostrar mensaje
+        alerta.style.display = 'block';
+        
+        // Ocultar a los 3 segundos
+        setTimeout(function() {
+            alerta.style.display = 'none';
+        }, 3000);
+        
+        // Limpiar URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+</script>
 
 </body>
 </html>
