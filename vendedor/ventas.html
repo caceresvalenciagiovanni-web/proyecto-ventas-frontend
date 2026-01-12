@@ -36,7 +36,21 @@ body { background:#f5f6fa; }
 <div class="content">
     <h2>Registrar Venta</h2>
     <p class="text-muted">Sistema poteciado por ORM Eloquent</p>
-
+    <div id="alerta-exito" class="alert alert-success" style="display:none; max-width:500px;">
+        ✅ <strong>¡Éxito!</strong> Venta Registrada Correctamente.
+    </div>
+    <script>
+    // Verificamos si la URL tiene parámetros (señal de que se envió el formulario)
+    const parametros = new URLSearchParams(window.location.search);
+    
+    // Si existe el parámetro "cliente" (o cualquier otro input), mostramos el mensaje
+    if (parametros.has('cliente')) {
+        document.getElementById('alerta-exito').style.display = 'block';
+        
+        // Opcional: Limpiar la URL para que si recargas no salga el mensaje de nuevo
+        // window.history.replaceState({}, document.title, window.location.pathname);
+    }
+    </script>
     <form action="ventas.html" method="GET" class="card p-4 shadow" style="max-width:500px;">
         
         <label class="fw-bold">Cliente:</label>
