@@ -40,17 +40,25 @@ body { background:#f5f6fa; }
         ✅ <strong>¡Éxito!</strong> Venta Registrada Correctamente.
     </div>
     <script>
-    // Verificamos si la URL tiene parámetros (señal de que se envió el formulario)
+    // 1. Detectamos si la URL tiene parámetros (señal de que se envió el formulario)
     const parametros = new URLSearchParams(window.location.search);
     
-    // Si existe el parámetro "cliente" (o cualquier otro input), mostramos el mensaje
+    // Si existe el parámetro "cliente"
     if (parametros.has('cliente')) {
-        document.getElementById('alerta-exito').style.display = 'block';
+        const alerta = document.getElementById('alerta-exito');
         
-        // Opcional: Limpiar la URL para que si recargas no salga el mensaje de nuevo
-        // window.history.replaceState({}, document.title, window.location.pathname);
+        // 2. Mostramos el mensaje
+        alerta.style.display = 'block';
+        
+        // 3. Configurar el temporizador: Ocultar después de 3 segundos (3000 ms)
+        setTimeout(function() {
+            alerta.style.display = 'none';
+        }, 3000);
+        
+        // (Opcional) Limpia la URL para quitar los datos ?cliente=...
+        window.history.replaceState({}, document.title, window.location.pathname);
     }
-    </script>
+</script>
     <form action="ventas.html" method="GET" class="card p-4 shadow" style="max-width:500px;">
         
         <label class="fw-bold">Cliente:</label>
